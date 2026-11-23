@@ -19,6 +19,9 @@ export const initPagination = ({pages, fromRow, toRow, totalRows}, createPage) =
             case 'last': page = pageCount; break;
         }
 
+        // после фильтрации страниц может стать меньше, чем номер текущей
+        page = Math.max(1, Math.min(page, pageCount));
+
         // @todo: #2.4 - получить список видимых страниц и вывести их
         const visiblePages = getPages(page, pageCount, 5);
         pages.replaceChildren(...visiblePages.map(pageNumber => {
