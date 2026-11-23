@@ -27,10 +27,14 @@ function collectState() {
     const rowsPerPage = parseInt(state.rowsPerPage);
     const page = parseInt(state.page ?? 1);
 
+    // диапазон суммы для правила arrayAsRange; пустое поле даёт NaN и не ограничивает диапазон
+    const total = [parseFloat(state.totalFrom), parseFloat(state.totalTo)];
+
     return {
         ...state,
         rowsPerPage,
-        page
+        page,
+        total
     };
 }
 
